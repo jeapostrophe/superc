@@ -1,7 +1,7 @@
-#lang planet jaymccarthy/superc
+#lang superc
 
-@cflags{-I"/opt/local/include/"}
-@ldflags{-L"/opt/local/lib/db46" -ldb}
+@cflags{}
+@ldflags{-ldb}
 @c{
 #include <sys/types.h>
 
@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <db46/db.h>
+#include <db.h>
 
 #define	DATABASE "access.db"
 

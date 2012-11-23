@@ -1,12 +1,12 @@
-#lang scheme
-(require scheme/foreign
-         "lang-api.ss"
-         "c-loader.ss"
-         (for-syntax scheme
+#lang racket/base
+(require ffi/unsafe
+         "lang-api.rkt"
+         "c-loader.rkt"
+         (for-syntax racket/base
+                     racket/list
+                     racket/port
                      scribble/text/output
-                     unstable/syntax
-                     (planet cce/scheme:4:1/planet)))
-(unsafe!)
+                     racket/syntax))
 
 (define-syntax (c stx)
   (syntax-case stx ()
@@ -50,7 +50,7 @@
      (with-syntax 
          ([(pmb body ...)
            (local-expand (quasisyntax/loc stx
-                           (#%module-begin (require (planet #,(this-package-version-symbol lang-api)))
+                           (#%module-begin (require superc/lang-api)
                                            e ...))
                          'module-begin 
                          empty)])
@@ -67,6 +67,7 @@
          ldflags
          get-ffi-obj-from-this
          (rename-out [module-begin #%module-begin])
-         (except-out (all-from-out scheme)
+         (except-out (all-from-out racket/base)
                      #%module-begin)
-         (all-from-out scheme/foreign))
+         (for-syntax (all-from-out racket/base))
+         (all-from-out ffi/unsafe))

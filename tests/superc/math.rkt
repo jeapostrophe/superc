@@ -1,4 +1,4 @@
-#lang planet jaymccarthy/superc
+#lang superc
 
 @c{
  #include <stdio.h>
