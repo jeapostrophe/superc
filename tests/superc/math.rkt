@@ -9,7 +9,7 @@
 
 @c{
 int main(void) {
- printf("The Scheme program contains: @|y|\n");
+ printf("The Racket program contains: @|y|\n");
  return cos(M_PI);
 }
 }
@@ -17,4 +17,7 @@ int main(void) {
 (define main (get-ffi-obj-from-this 'main (_fun -> _int)))
 
 (printf "The C program returned: ~a~n"
+        (main))
+
+(printf "The C program returned: ~a the second time~n"
         (main))

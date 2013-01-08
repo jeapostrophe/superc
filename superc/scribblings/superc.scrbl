@@ -1,13 +1,13 @@
 #lang scribble/doc
 @(require scribble/manual
           scribble/basic
-          (for-label (only-in "../lang.ss"
+          (for-label (only-in "../lang.rkt"
                               c cflags ldflags)))
 
 @title[#:tag "top"]{Super C}
 @author[(author+email "Jay McCarthy" "jay@racket-lang.org")]
 
-@defmodulelang[superc]
+@defmodulelang[superc #:use-sources (superc/lang)]
 
 This package provides a language for writing integrated C and Racket, it uses the Scribble reader.
 
