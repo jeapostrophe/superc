@@ -1,7 +1,12 @@
 #lang superc
 
-@cflags{}
-@ldflags{-ldb}
+(define-syntax (maybe-db stx)
+  (if (not (directory-exists? "/opt/local/include/db48"))
+      (syntax @c{int main() { return 0; }})
+      (syntax
+       (begin
+@cflags{-I/opt/local/include/db48}
+@ldflags{-L/opt/local/lib/db48 -ldb}
 @c{
 #include <sys/types.h>
 
@@ -77,7 +82,9 @@ err:	if ((t_ret = dbp->close(dbp, 0)) != 0 && ret == 0)
 	exit(ret);
 }
 }
+))))
 
+(maybe-db)
 (define main (get-ffi-obj-from-this 'main (_fun -> _int)))
 
 (printf "The C program returned: ~a~n"
