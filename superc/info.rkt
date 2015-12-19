@@ -2,7 +2,7 @@
 (define name "Super C")
 (define blurb
   (list "A language for writing integrated C and Scheme"))
-(define scribblings '(["scribblings/superc.scrbl" (multi-page)]))
+(define scribblings '(["scribblings/superc.scrbl" (multi-page) (experimental)]))
 (define categories '(devtools))
 (define primary-file "lang.ss")
 (define compile-omit-paths '("examples"))
